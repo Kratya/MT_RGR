@@ -1,0 +1,22 @@
+int main() {
+	/*int a = 3;
+
+	int b = 10, d = 2 * a + b * 4; // d = 46
+
+	switch (2 * a) { // case 6
+
+  case 0: a = d; break;
+
+case 6: a = b * 2 + 3; break; // a = 23
+	default: a = 3; break;
+	}
+
+  switch (a > b) { // case 1
+	case 0: a = 4; break;
+case 1: a = 7; break; // a = 7
+
+	default: break;
+	}
+
+	return 0;
+}

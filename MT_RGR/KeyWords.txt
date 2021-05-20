@@ -1,0 +1,8 @@
+int
+main
+float
+switch
+case
+default
+break
+return

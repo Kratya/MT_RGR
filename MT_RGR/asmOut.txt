@@ -1,0 +1,171 @@
+.386; директива, предписывающая Ассемблеру использовать
+; набор операций для процессора 80386.
+.MODEL FLAT, STDCALL
+EXTRN ExitProcess@4:PROC; выход
+.DATA
+; Переменные
+a	dd ?
+b	dd ?
+d	dd ?
+
+; Константы
+const_0_0	 dd 0
+const_1_0	 dd 10
+const_1_1	 dd 1
+const_2_0	 dd 2
+const_3_0	 dd 3
+const_4_0	 dd 4
+const_6_0	 dd 6
+const_7_0	 dd 7
+
+.CODE ; Сегмент кода
+MAIN PROC; Метка точки входа
+FINIT
+FILD a
+FILD const_3_0
+FISTP a
+FINIT 
+FILD b
+FILD const_1_0
+FISTP b
+FINIT 
+FILD d
+FILD const_2_0
+FILD a
+FMUL
+FILD b
+FILD const_4_0
+FMUL
+FADD
+FISTP d
+FINIT 
+FILD const_2_0
+FILD a
+FMUL
+FILD const_0_0
+FCOM
+FSTSW AX
+SAHF
+JE JMP_EQ_0
+FLDZ
+JMP JMP_EQ_0_END
+JMP_EQ_0:
+FLD1
+JMP_EQ_0_END:
+FINIT
+JNE L0
+FILD a
+FILD d
+FISTP a
+FINIT 
+FINIT
+JMP L1
+FINIT
+L0:
+FILD const_2_0
+FILD a
+FMUL
+FILD const_6_0
+FCOM
+FSTSW AX
+SAHF
+JE JMP_EQ_1
+FLDZ
+JMP JMP_EQ_1_END
+JMP_EQ_1:
+FLD1
+JMP_EQ_1_END:
+FINIT
+JNE L2
+FILD a
+FILD b
+FILD const_2_0
+FMUL
+FILD const_3_0
+FADD
+FISTP a
+FINIT 
+FINIT
+JMP L3
+FINIT
+L2:
+FILD a
+FILD const_3_0
+FISTP a
+FINIT 
+FINIT
+L3:
+FINIT
+L1:
+FILD a
+FILD b
+FCOM
+FSTSW AX
+SAHF
+JL JMP_GREAT_2
+FLD1
+JMP JMP_GREAT_2_END
+JMP_GREAT_2:
+FLDZ
+JMP_GREAT_2_END:
+FILD const_0_0
+FCOM
+FSTSW AX
+SAHF
+JE JMP_EQ_3
+FLDZ
+JMP JMP_EQ_3_END
+JMP_EQ_3:
+FLD1
+JMP_EQ_3_END:
+FINIT
+JNE L4
+FILD a
+FILD const_4_0
+FISTP a
+FINIT 
+FINIT
+JMP L5
+FINIT
+L4:
+FILD a
+FILD b
+FCOM
+FSTSW AX
+SAHF
+JL JMP_GREAT_4
+FLD1
+JMP JMP_GREAT_4_END
+JMP_GREAT_4:
+FLDZ
+JMP_GREAT_4_END:
+FILD const_1_1
+FCOM
+FSTSW AX
+SAHF
+JE JMP_EQ_5
+FLDZ
+JMP JMP_EQ_5_END
+JMP_EQ_5:
+FLD1
+JMP_EQ_5_END:
+FINIT
+JNE L6
+FILD a
+FILD const_7_0
+FISTP a
+FINIT 
+FINIT
+JMP L7
+FINIT
+L6:
+FINIT
+L7:
+FINIT
+L5:
+
+; Выход из программы
+PUSH 0; Параметр: код выхода
+CALL ExitProcess@4
+MAIN ENDP
+END MAIN
